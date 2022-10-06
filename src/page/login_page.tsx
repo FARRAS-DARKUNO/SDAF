@@ -4,14 +4,13 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from "./register_style";
 
-const RegisterPage = () => {
+const LoginPage = () => {
     return (
         <View>
-            <Text> Beranda</Text>
+            <Text> Detail</Text>
         </View>
     )
 }
 
-export default RegisterPage
+export default LoginPage

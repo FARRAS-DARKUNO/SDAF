@@ -4,14 +4,13 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from "./beranda_style";
 
-const BerandaPage = () => {
+const ProfilPage = () => {
     return (
         <View>
-            <Text> Beranda</Text>
+            <Text> Detail</Text>
         </View>
     )
 }
 
-export default BerandaPage
+export default ProfilPage

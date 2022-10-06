@@ -4,9 +4,8 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from "./login_style";
 
-const LoginPage = () => {
+const DetailPage = () => {
     return (
         <View>
             <Text> Detail</Text>
@@ -14,4 +13,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default DetailPage

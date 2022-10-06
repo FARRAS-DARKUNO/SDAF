@@ -4,14 +4,13 @@ import {
     View,
     Text
 } from 'react-native';
-import styles from "./profil_before_style";
 
-const ProfilBeforePage = () => {
+const RegisterPage = () => {
     return (
         <View>
-            <Text> Detail</Text>
+            <Text> Beranda</Text>
         </View>
     )
 }
 
-export default ProfilBeforePage
+export default RegisterPage
