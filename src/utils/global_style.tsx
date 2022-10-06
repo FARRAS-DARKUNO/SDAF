@@ -38,10 +38,15 @@ const stylesGlobal = StyleSheet.create({
     backroundPremier: {
         backgroundColor: '#6399B0'
     },
+    backroundSekunder: {
+        backgroundColor: '#2F5664'
+    },
     backroundWhite: {
         backgroundColor: '#FFFFFF'
     },
 
 })
+
+export const COLOR_GRADIEN: string[] = ['#2F5664', '#6399B0']
 
 export default stylesGlobal;
