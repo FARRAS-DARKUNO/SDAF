@@ -1,37 +1,23 @@
 import React from "react";
 import {
     View,
-    StyleSheet,
     Text,
 } from 'react-native';
 import stylesGlobal from "../../utils/global_style";
+import { DataContain } from "../../utils/interface";
+import styles from "./styles";
 
-const GridCard = () => {
+const GridCard = (props: DataContain) => {
     return (
-        <View style={[styles.container1, stylesGlobal.backroundSekunder]}>
-
+        <View style={[styles.containerGrid, stylesGlobal.backroundSekunder]}>
+            <Text style={[stylesGlobal.colorWhite, stylesGlobal.header3]}>{props.name}</Text>
+            <Text style={[stylesGlobal.colorWhite, stylesGlobal.header2]}>
+                {props.value + ' ' + props.type}
+            </Text>
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container1: {
-        height: 100,
-        width: '49%',
-        borderRadius: 30,
-        justifyContent: "center",
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.20,
-        shadowRadius: 1.41,
-        elevation: 2,
-        marginBottom: 5,
-    }
-})
 
 
 export default GridCard

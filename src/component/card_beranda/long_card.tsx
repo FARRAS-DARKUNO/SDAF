@@ -5,33 +5,26 @@ import {
     Text,
 } from 'react-native';
 import stylesGlobal from "../../utils/global_style";
+import { DataContain } from "../../utils/interface";
+import styles from "./styles";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const LongCard = () => {
+const LongCard = (props: DataContain) => {
     return (
-        <View style={[styles.container1, stylesGlobal.backroundSekunder]}>
+        <View style={[styles.containerLong, stylesGlobal.backroundSekunder]}>
+            <Text style={[stylesGlobal.colorWhite, stylesGlobal.header3]}>{props.name}</Text>
+            <View style={styles.suhuCuaca}>
+                <MaterialCommunityIcons name="thermometer" size={30} color="#fff" />
+                <Text style={[stylesGlobal.colorWhite, stylesGlobal.header1]}>
+                    {props.value + ' ' + props.type}
+                </Text>
+            </View>
 
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container1: {
-        height: 100,
-        width: '100%',
-        borderRadius: 30,
-        justifyContent: "center",
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.20,
-        shadowRadius: 1.41,
-        elevation: 2,
-        marginBottom: 10,
-    }
-})
+
 
 
 export default LongCard
