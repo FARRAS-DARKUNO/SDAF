@@ -24,7 +24,6 @@ const BerandaPage = () => {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#14162F',
         flex: 1,
         paddingHorizontal: 20,
         paddingVertical: 30,

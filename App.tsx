@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // page
 import BerandaPage from './src/page/beranda_page';
-
+import DetailPage from './src/page/detail_page';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +14,8 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="BerandaPage" component={BerandaPage} />
+        {/* <Stack.Screen name="BerandaPage" component={BerandaPage} /> */}
+        <Stack.Screen name="DetailPage" component={DetailPage} />
       </Stack.Navigator>
     </NavigationContainer>
     // </Provider>
