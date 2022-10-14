@@ -47,7 +47,9 @@ const FilterDetail = (props: DataFilter) => {
 const styles = StyleSheet.create({
     viewBottom: {
         height: 30,
-        flexDirection: 'row-reverse'
+        flexDirection: 'row-reverse',
+        marginBottom: 20,
+        paddingHorizontal: 20,
     },
     buttonSelectYear: {
         width: "27%",

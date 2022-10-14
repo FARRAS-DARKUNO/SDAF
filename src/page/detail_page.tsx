@@ -17,20 +17,19 @@ const DetailPage = () => {
 
     const data = {
         labels: ["1", "2", "3", "4"],
-        datasets: [
-            {
-                data: [20.3, 45.2, 28.4, 20.2],
-                color: (opacity = 1) => `rgba(20, 69, 62, ${opacity})`, // optional
-                strokeWidth: 2 // optional
-            }
-        ],
+        datasets: {
+            data: [20.3, 45.2, 28.4, 20.2],
+            color: (opacity = 1) => `rgba(20, 69, 62, ${opacity})`, // optional
+            strokeWidth: 2 // optional
+        }
+        ,
     };
 
     return (
         <SafeAreaView style={[stylesGlobal.backroundWhite, styles.container]}>
             <StatusBar
                 animated={true}
-                hidden={true}
+            // hidden={true}
             />
             <View style={styles.concomponent}>
                 <View style={styles.titleBack}>
@@ -44,6 +43,13 @@ const DetailPage = () => {
                     year={countries}
                     date={bulan}
                 />
+                <Detail.GrafikDetail
+                    label={data.labels}
+                    data={data.datasets.data}
+                    color={data.datasets.color}
+                    strokeWidth={data.datasets.strokeWidth}
+                />
+                <Detail.AverageDetail />
             </View>
         </SafeAreaView>
     )
@@ -51,7 +57,7 @@ const DetailPage = () => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
         paddingVertical: 30,
     },
     concomponent: {
@@ -63,6 +69,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: 'center',
         marginBottom: 30,
+        paddingHorizontal: 20,
     },
 })
 
