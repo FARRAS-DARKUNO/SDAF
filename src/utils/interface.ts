@@ -17,3 +17,8 @@ export interface DataGrafik {
     strokeWidth: number
 
 }
+
+export interface DataAvarage {
+    date: any,
+    value: any
+}

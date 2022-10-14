@@ -5,6 +5,7 @@ import {
     ScrollView,
 } from "react-native"
 import stylesGlobal from "../../utils/global_style"
+import ListAvarage from "../list_avarage/list_avarage"
 
 const dataAvarage = [
     {
@@ -67,24 +68,10 @@ const AverageDetail = () => {
                 <ScrollView>
                     {
                         dataAvarage.map((note) => (
-
-                            <>
-
-                                <View style={styles.dataAvarage}>
-                                    <View>
-
-                                        <Text style={[stylesGlobal.header3, stylesGlobal.colorPremier]}>
-                                            {note.date}
-                                        </Text>
-                                    </View>
-                                    <View style={[styles.valueAvarage, stylesGlobal.backroundPremier]}>
-                                        <Text style={[stylesGlobal.header3, stylesGlobal.colorWhite, { paddingHorizontal: 10 }]}>
-                                            {note.value}
-                                        </Text>
-                                    </View>
-                                </View>
-                            </>
-
+                            <ListAvarage
+                                date={note.date}
+                                value={note.value}
+                            />
                         ))
                     }
                 </ScrollView>
@@ -100,19 +87,6 @@ const styles = StyleSheet.create({
     lineText: {
         height: '63%',
         width: '100%'
-    },
-    dataAvarage: {
-        width: '100%',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        marginBottom: 10,
-        alignItems: 'center',
-    },
-    valueAvarage: {
-        height: 30,
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 
 })
