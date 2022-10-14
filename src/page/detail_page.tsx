@@ -29,7 +29,8 @@ const DetailPage = () => {
         <SafeAreaView style={[stylesGlobal.backroundWhite, styles.container]}>
             <StatusBar
                 animated={true}
-            // hidden={true}
+                // hidden={true}
+                backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
             <View style={styles.concomponent}>
                 <View style={styles.titleBack}>
@@ -57,7 +58,7 @@ const DetailPage = () => {
 
 const styles = StyleSheet.create({
     container: {
-        // paddingHorizontal: 20,
+        flex: 1,
         paddingVertical: 30,
     },
     concomponent: {

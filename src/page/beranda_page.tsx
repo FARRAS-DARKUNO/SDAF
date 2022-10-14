@@ -13,7 +13,7 @@ const BerandaPage = () => {
         <SafeAreaView style={[styles.container, stylesGlobal.backroundPremier]}>
             <StatusBar
                 animated={true}
-                hidden={true}
+                backgroundColor={stylesGlobal.backroundPremier.backgroundColor}
             />
             <View style={styles.concomponent}>
                 <Beranda.HeaderBeranda />

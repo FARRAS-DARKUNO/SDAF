@@ -1,3 +1,6 @@
+import React from "react";
+
+export type ReactSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 export interface DataContain {
     id: number,
     name: string,
@@ -21,4 +24,8 @@ export interface DataGrafik {
 export interface DataAvarage {
     date: any,
     value: any
+}
+
+export interface SizeImage {
+    size: number
 }
