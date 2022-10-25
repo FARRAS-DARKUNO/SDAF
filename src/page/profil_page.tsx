@@ -1,16 +1,8 @@
 import React from "react";
-import {
-    SafeAreaView,
-    View,
-    Text
-} from 'react-native';
+import ProfilAfter from "./profil_after";
 
 const ProfilPage = () => {
-    return (
-        <View>
-            <Text> Detail</Text>
-        </View>
-    )
+    return ProfilAfter()
 }
 
 export default ProfilPage
