@@ -9,6 +9,7 @@ import LoginPage from './src/page/login_page';
 import ProfilPage from './src/page/profil_page';
 // DUmmie
 import ProfilAfter from './src/page/profil_after';
+import ProfilBefore from './src/page/profil_before';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +23,8 @@ const App = () => {
         {/* <Stack.Screen name="DetailPage" component={DetailPage} /> */}
         {/* <Stack.Screen name="LoginPage" component={LoginPage} /> */}
         {/* <Stack.Screen name="ProfilPage" component={ProfilPage} /> */}
-        <Stack.Screen name="ProfilAfter" component={ProfilAfter} />
+        {/* <Stack.Screen name="ProfilAfter" component={ProfilAfter} /> */}
+        <Stack.Screen name="ProfilBefore" component={ProfilBefore} />
       </Stack.Navigator>
     </NavigationContainer>
     // </Provider>
