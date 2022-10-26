@@ -29,7 +29,7 @@ const ProfilBefore = () => {
                 </Text>
             </TouchableOpacity>
             <View style={styles.imageStyle}>
-                <LogoSFAD size={200} />
+                <LogoSFAD size={130} />
             </View>
             <View style={stylesGlobal.enter20} />
             <ButtonInput
