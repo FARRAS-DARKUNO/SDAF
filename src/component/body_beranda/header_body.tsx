@@ -5,13 +5,14 @@ import {
     Text,
 } from 'react-native';
 import stylesGlobal from "../../utils/global_style";
+import { TimeBeranda } from "../../utils/moment.";
 
 const HeaderBody = () => {
     return (
 
         <View style={styles.container}>
             <Text style={[stylesGlobal.colorWhite, stylesGlobal.subtitle]}>
-                Minggu, 1 Desember 2019
+                {TimeBeranda()}
             </Text>
             <View style={stylesGlobal.enter10} />
             <Text style={[stylesGlobal.colorWhite, stylesGlobal.header1]}>
