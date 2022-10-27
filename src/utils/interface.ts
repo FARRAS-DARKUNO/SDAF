@@ -2,10 +2,9 @@ import React from "react";
 
 export type ReactSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 export interface DataContain {
-    id: number,
     name: string,
-    value: number,
-    type: string,
+    value: number | string,
+    type: string | null,
 }
 
 export interface DataFilter {

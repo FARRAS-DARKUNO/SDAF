@@ -12,9 +12,11 @@ import ProfilAfter from './src/page/profil_after';
 import ProfilBefore from './src/page/profil_before';
 import RegisterPage from './src/page/register_page';
 
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+
   return (
     // <Provider store={Store}>
     <NavigationContainer>

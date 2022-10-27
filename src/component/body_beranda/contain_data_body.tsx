@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     StyleSheet,
@@ -6,72 +6,58 @@ import {
 } from 'react-native';
 import stylesGlobal from "../../utils/global_style";
 import Card from "../card_beranda/card";
+import database from '@react-native-firebase/database';
+
 
 const ContainDataBody = () => {
-    const data = [
-        {
-            id: 1,
-            name: 'Suhu Cuaca',
-            value: 34,
-            type: '°',
-        },
-        {
-            id: 2,
-            name: 'Arah Angin',
-            value: 27,
-            type: '°',
-        },
-        {
-            id: 3,
-            name: 'Kecepatan Angin',
-            value: 27,
-            type: 'm/s',
-        },
-        {
-            id: 4,
-            name: 'Tinggi Gelombang',
-            value: 270,
-            type: 'Cm',
-        },
-        {
-            id: 5,
-            name: 'Kecepatan Arus',
-            value: 27,
-            type: 'm/s',
-        },
-    ]
+
+    const [arahAhngin, setArahAngin] = useState<string>('')
+    const [kecepatanAngin, setKecepatanAngin] = useState<number>(0)
+    const [KecepatanGelombang, setKecepatanGelombang] = useState<number>(0)
+    const [tinggiGelombang, setTinggiGelombang] = useState<number>(0)
+    const [suhuLaut, setSuhuLAut] = useState<number>(0)
+
+    database()
+        .ref('/')
+        .on('value', snapshot => {
+            setArahAngin(snapshot.val().angin.arah)
+            setKecepatanAngin(snapshot.val().angin.kecepatan_mps)
+            setKecepatanGelombang(snapshot.val().laut.kecepatan_mps)
+            setTinggiGelombang(snapshot.val().laut.ketinggian_m)
+            setSuhuLAut(snapshot.val().laut.suhu_ms5611_c)
+        });
+
     return (
         <View style={styles.contain}>
             <Card.LongCard
-                id={data[0].id}
-                name={data[0].name}
-                value={data[0].value}
-                type={data[0].type}
+                name={'Suhu Laut'}
+                value={suhuLaut}
+                type={'°'}
             />
             <View style={styles.wrap}>
                 <Card.GridCard
-                    id={data[1].id}
-                    name={data[1].name}
-                    value={data[1].value}
-                    type={data[1].type}
+
+                    name={'Arah Angin'}
+                    value={arahAhngin}
+                    type={''}
                 />
                 <Card.GridCard
-                    id={data[2].id}
-                    name={data[2].name}
-                    value={data[2].value}
-                    type={data[2].type}
+
+                    name={'Kecepatan Angin'}
+                    value={kecepatanAngin}
+                    type={'m/s'}
                 />
                 <Card.GridCard
-                    id={data[3].id}
-                    name={data[3].name}
-                    value={data[3].value}
-                    type={data[3].type}
+
+                    name={'Tinggi Gelombang'}
+                    value={tinggiGelombang}
+                    type={'M'}
                 />
                 <Card.GridCard
-                    id={data[4].id}
-                    name={data[4].name}
-                    value={data[4].value}
-                    type={data[4].type} />
+
+                    name={'Kecepatan Arus'}
+                    value={KecepatanGelombang}
+                    type={'m/s'} />
             </View>
 
         </View>
