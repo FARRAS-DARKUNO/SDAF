@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // page
+import SplashScreen from './src/page/splash_screen';
 import BerandaPage from './src/page/beranda_page';
 import DetailPage from './src/page/detail_page';
 import LoginPage from './src/page/login_page';
@@ -11,6 +12,7 @@ import ProfilPage from './src/page/profil_page';
 import ProfilAfter from './src/page/profil_after';
 import ProfilBefore from './src/page/profil_before';
 import RegisterPage from './src/page/register_page';
+//goto
 
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +24,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="BerandaPage" component={BerandaPage} />
         <Stack.Screen name="DetailPage" component={DetailPage} />
         <Stack.Screen name="LoginPage" component={LoginPage} />
