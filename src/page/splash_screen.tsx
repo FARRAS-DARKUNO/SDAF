@@ -8,7 +8,7 @@ import {
 import LogoSFAD from "../component/image/image";
 import stylesGlobal from "../utils/global_style";
 import { isInternetConnect } from "../utils/check_internet";
-import LostConection from "../component/lost_conection/lost_conection";
+import Loading from "../component/loading/loading";
 
 const SplashScreen = () => {
 
@@ -17,7 +17,7 @@ const SplashScreen = () => {
     useEffect(()=>{
         isInternetConnect({setData:setConnection})
         console.log('yes',isConnection)
-    },[])
+    },[isConnection])
 
     return (
         <View style={styles.container}>
