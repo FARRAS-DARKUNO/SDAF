@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
     View,
     StyleSheet,
-    Text,
+    TouchableWithoutFeedback,
 } from 'react-native';
-import stylesGlobal from "../../utils/global_style";
 import Card from "../card_beranda/card";
 import database from '@react-native-firebase/database';
 
@@ -33,31 +32,41 @@ const ContainDataBody = () => {
                 name={'Suhu Laut'}
                 value={suhuLaut}
                 type={'°'}
+                link={'suhu-lingkungans'}
+                key={'suhu-lingkungans'}
             />
             <View style={styles.wrap}>
                 <Card.GridCard
-
                     name={'Arah Angin'}
                     value={arahAhngin}
                     type={''}
+                    link={'arah-angins'}
+                    key={'arah-angins'}
                 />
                 <Card.GridCard
 
                     name={'Kecepatan Angin'}
                     value={kecepatanAngin}
                     type={'m/s'}
+                    link={'kecepatan-angins'}
+                    key={'kecepatan-angins'}
                 />
                 <Card.GridCard
 
                     name={'Tinggi Gelombang'}
                     value={tinggiGelombang}
                     type={'M'}
+                    link={'tinggi-gelombangs'}
+                    key={'tinggi-gelombangs'}
                 />
                 <Card.GridCard
 
                     name={'Kecepatan Arus'}
                     value={KecepatanGelombang}
-                    type={'m/s'} />
+                    type={'m/s'}
+                    link={'kuat-aruss'}
+                    key={'kuat-aruss'}
+                />
             </View>
 
         </View>

@@ -5,6 +5,7 @@ export interface DataContain {
     name: string,
     value: number | string,
     type: string | null,
+    link : string,
 }
 
 export interface DataFilter {
