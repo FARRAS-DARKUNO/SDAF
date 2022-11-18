@@ -1,23 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
-    SafeAreaView,
     StatusBar,
     StyleSheet,
     View,
 } from 'react-native';
 import LogoSFAD from "../component/image/image";
 import stylesGlobal from "../utils/global_style";
-import { isInternetConnect } from "../utils/check_internet";
-import Loading from "../component/loading/loading";
+import { useNavigation } from "@react-navigation/native";
 
 const SplashScreen = () => {
 
-    const [isConnection, setConnection] = useState<number>(400)
+    const navigate = useNavigation()
 
-    useEffect(()=>{
-        isInternetConnect({setData:setConnection})
-        console.log('yes',isConnection)
-    },[isConnection])
+    useEffect(() => {
+        setTimeout(() => {
+            // @ts-ignore
+            navigate.navigate('BerandaPage')
+        }, 1000)
+    }, [])
 
     return (
         <View style={styles.container}>

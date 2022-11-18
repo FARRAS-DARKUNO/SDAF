@@ -14,8 +14,18 @@ import ProfilBefore from './src/page/profil_before';
 import RegisterPage from './src/page/register_page';
 //goto
 
+type RootStackParamList ={
+  SplashScreen : undefined,
+  BerandaPage : undefined,
+  DetailPage : undefined,
+  LoginPage : undefined,
+  ProfilPage : undefined,
+  ProfilAfter : undefined,
+  ProfilBefore : undefined,
+  RegisterPage : undefined,
+}
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
 
