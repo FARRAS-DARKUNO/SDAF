@@ -8,21 +8,22 @@ import BerandaPage from './src/page/beranda_page';
 import DetailPage from './src/page/detail_page';
 import LoginPage from './src/page/login_page';
 import ProfilPage from './src/page/profil_page';
-// DUmmie
 import ProfilAfter from './src/page/profil_after';
 import ProfilBefore from './src/page/profil_before';
 import RegisterPage from './src/page/register_page';
-//goto
+//redux
+import { Provider } from 'react-redux';
+import { Store } from './src/redux/store';
 
-type RootStackParamList ={
-  SplashScreen : undefined,
-  BerandaPage : undefined,
-  DetailPage : undefined,
-  LoginPage : undefined,
-  ProfilPage : undefined,
-  ProfilAfter : undefined,
-  ProfilBefore : undefined,
-  RegisterPage : undefined,
+type RootStackParamList = {
+  SplashScreen: undefined,
+  BerandaPage: undefined,
+  DetailPage: undefined,
+  LoginPage: undefined,
+  ProfilPage: undefined,
+  ProfilAfter: undefined,
+  ProfilBefore: undefined,
+  RegisterPage: undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -30,21 +31,21 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
 
   return (
-    // <Provider store={Store}>
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="SplashScreen" component={SplashScreen} />
-        <Stack.Screen name="BerandaPage" component={BerandaPage} />
-        <Stack.Screen name="DetailPage" component={DetailPage} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="ProfilPage" component={ProfilPage} />
-        <Stack.Screen name="ProfilAfter" component={ProfilAfter} />
-        <Stack.Screen name="ProfilBefore" component={ProfilBefore} />
-        <Stack.Screen name="RegisterPage" component={RegisterPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
-    // </Provider>
+    <Provider store={Store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="SplashScreen" component={SplashScreen} />
+          <Stack.Screen name="BerandaPage" component={BerandaPage} />
+          <Stack.Screen name="DetailPage" component={DetailPage} />
+          <Stack.Screen name="LoginPage" component={LoginPage} />
+          <Stack.Screen name="ProfilPage" component={ProfilPage} />
+          <Stack.Screen name="ProfilAfter" component={ProfilAfter} />
+          <Stack.Screen name="ProfilBefore" component={ProfilBefore} />
+          <Stack.Screen name="RegisterPage" component={RegisterPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

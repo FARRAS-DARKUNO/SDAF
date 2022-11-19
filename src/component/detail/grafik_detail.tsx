@@ -14,12 +14,12 @@ const GrafikDetail = (props: DataGrafik) => {
     const screenWidth = Dimensions.get("window").width - 20;
 
     const data = {
-        labels: ["1", "2", "3", "4", '5', '6', '7'],
+        labels: props.label,
         datasets: [
             {
-                data: [20.3, 45.2, 28.4, 40, 30, 20],
-                color: (opacity = 255) => `rgba(255, 255, 255, ${opacity})`,
-                strokeWidth: 2 // optional
+                data: props.data,
+                color: props.color,
+                strokeWidth: props.strokeWidth // optional
             }
         ],
     };
