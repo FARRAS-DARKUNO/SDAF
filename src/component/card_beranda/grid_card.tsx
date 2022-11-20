@@ -17,7 +17,7 @@ const GridCard = (props: DataContain) => {
 
         <TouchableWithoutFeedback
             //@ts-ignore
-            onPress={() => navigate.navigate(namePage.DETAIL_PAGE, { name: props.link })}
+            onPress={() => navigate.navigate(namePage.DETAIL_PAGE, { name: props.link, page: props.name })}
         >
             <View style={[styles.containerGrid, stylesGlobal.backroundSekunder]}>
                 <Text style={[stylesGlobal.colorWhite, stylesGlobal.header3]}>{props.name}</Text>

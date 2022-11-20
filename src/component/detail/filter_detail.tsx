@@ -5,12 +5,19 @@ import {
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import { DataFilter } from "../../utils/interface";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMonthValue, setYearValue } from '../../redux/action'
 
 const FilterDetail = (props: DataFilter) => {
 
     const dispatch = useDispatch()
+
+    const { month, year } = useSelector(
+        //@ts-ignore
+        state => state.userReducer
+    )
+
+    const bulan = ['', 'Januari', 'Februari', 'Maret', "April", "Mei", 'Juni', "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
 
     return (
         <View style={styles.viewBottom}>
@@ -18,7 +25,7 @@ const FilterDetail = (props: DataFilter) => {
                 data={props.year}
                 buttonStyle={styles.buttonSelectYear}
                 buttonTextStyle={styles.textButton}
-                defaultValue={props.year[0]}
+                defaultValue={year}
                 onSelect={(selectedItem, index) => {
                     console.log(selectedItem)
                     dispatch(setYearValue(selectedItem))
@@ -35,10 +42,10 @@ const FilterDetail = (props: DataFilter) => {
                 data={props.date}
                 buttonStyle={styles.buttonSelectMonth}
                 buttonTextStyle={styles.textButton}
-                defaultValue={props.date[0]}
+                defaultValue={bulan[month]}
                 onSelect={(selectedItem, index) => {
                     console.log(index)
-                    dispatch(setMonthValue(index))
+                    dispatch(setMonthValue(index + 1))
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                     return selectedItem

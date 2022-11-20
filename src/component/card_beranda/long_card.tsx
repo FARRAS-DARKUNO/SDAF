@@ -18,7 +18,7 @@ const LongCard = (props: DataContain) => {
     return (
         <TouchableWithoutFeedback
             //@ts-ignore
-            onPress={() => navigate.navigate(namePage.DETAIL_PAGE, { name: props.link })}
+            onPress={() => navigate.navigate(namePage.DETAIL_PAGE, { name: props.link, page: props.name })}
         >
             <View style={[styles.containerLong, stylesGlobal.backroundSekunder]}>
 

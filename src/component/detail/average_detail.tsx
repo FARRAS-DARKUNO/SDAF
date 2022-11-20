@@ -58,7 +58,7 @@ const dataAvarage = [
     },
 ]
 
-const AverageDetail = () => {
+const AverageDetail = ({ data }: Props) => {
     return (
         <View style={styles.container}>
             <Text style={[stylesGlobal.colorPremier, stylesGlobal.header2, { marginBottom: 20 }]}>
@@ -67,7 +67,7 @@ const AverageDetail = () => {
             <View style={styles.lineText}>
                 <ScrollView>
                     {
-                        dataAvarage.map((note) => (
+                        data.map((note: { date: any; value: any }) => (
                             <ListAvarage
                                 date={note.date}
                                 value={note.value}
@@ -79,6 +79,11 @@ const AverageDetail = () => {
         </View>
     )
 }
+
+interface Props {
+    data: any
+}
+
 
 const styles = StyleSheet.create({
     container: {
