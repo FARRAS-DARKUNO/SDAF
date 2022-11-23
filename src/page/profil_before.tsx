@@ -11,8 +11,15 @@ import stylesGlobal from "../utils/global_style";
 import LogoSFAD from "../component/image/image";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ButtonInput from '../component/button_input/button_input'
+import { useNavigation } from "@react-navigation/native";
 
 const ProfilBefore = () => {
+
+    const navigate = useNavigation()
+
+    const goBackPage = () => {
+        navigate.goBack()
+    }
 
     const dummie = () => console.log('masuk')
 
@@ -22,7 +29,7 @@ const ProfilBefore = () => {
                 animated={true}
                 backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
-            <TouchableOpacity style={styles.titleBack}>
+            <TouchableOpacity style={styles.titleBack} onPress={goBackPage}>
                 <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
                 <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
                     Profil
