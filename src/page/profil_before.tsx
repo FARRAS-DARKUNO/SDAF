@@ -12,16 +12,20 @@ import LogoSFAD from "../component/image/image";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ButtonInput from '../component/button_input/button_input'
 import { useNavigation } from "@react-navigation/native";
+import { namePage } from "../utils/namePage";
 
 const ProfilBefore = () => {
 
     const navigate = useNavigation()
 
+    //@ts-ignore
+    const gotoLogin = () => navigate.navigate(namePage.LOGIN_PAGE)
+    //@ts-ignore
+    const gotoRegister = () => navigate.navigate(namePage.REGISTER_PAGE)
+
     const goBackPage = () => {
         navigate.goBack()
     }
-
-    const dummie = () => console.log('masuk')
 
     return (
         <SafeAreaView style={[styles.container, stylesGlobal.backroundWhite]}>
@@ -40,12 +44,12 @@ const ProfilBefore = () => {
             </View>
             <View style={stylesGlobal.enter20} />
             <ButtonInput
-                action={dummie}
+                action={gotoLogin}
                 tittle={'Masuk Sebagai Peneliti'}
             />
             <View style={stylesGlobal.enter20} />
             <ButtonInput
-                action={dummie}
+                action={gotoRegister}
                 tittle={'Daftar Sebagai Peneliti'}
             />
 

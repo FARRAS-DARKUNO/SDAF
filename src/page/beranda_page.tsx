@@ -5,7 +5,9 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  BackHandler,
+  Alert
 } from 'react-native';
 import stylesGlobal from "../utils/global_style";
 import Beranda from "../component/beranda";
@@ -33,9 +35,34 @@ const BerandaPage = () => {
     });
   }, []);
 
+  const isExit = () => {
+    Alert.alert("Menutup Aplikasi", "Anda yakin ingin menutup aplikasi ?", [
+      {
+        text: "Tidak",
+        onPress: () => null,
+        style: "cancel"
+      },
+      {
+        text: "Ya",
+        onPress: () => BackHandler.exitApp()
+      }
+    ]);
+    return true;
+  }
+
 
   useEffect(() => {
     isInternetConnect({ setData: setConnection })
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      isExit
+    )
+
+    return () => {
+      backHandler.remove()
+    }
+
   }, [isConnection])
 
   return (

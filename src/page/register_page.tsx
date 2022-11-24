@@ -12,7 +12,13 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ButtonInput from "../component/button_input/button_input";
 import LogoSFAD from "../component/image/image";
 import TextInputData from "../component/textInput/textInput";
+import { useNavigation } from "@react-navigation/native";
+
 const RegisterPage = () => {
+
+    const navigate = useNavigation()
+
+    const goBack = () => navigate.goBack()
 
     const dummie = () => console.log('masuk')
 
@@ -29,7 +35,7 @@ const RegisterPage = () => {
                 animated={true}
                 backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
-            <TouchableOpacity style={styles.titleBack}>
+            <TouchableOpacity style={styles.titleBack} onPress={goBack}>
                 <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
                 <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
                     Daftar

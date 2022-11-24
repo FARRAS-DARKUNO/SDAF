@@ -12,14 +12,25 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import LogoSFAD from "../component/image/image";
 import TextInputData from "../component/textInput/textInput";
 import ButtonInput from "../component/button_input/button_input";
+import { useNavigation } from "@react-navigation/native";
+import { namePage } from "../utils/namePage";
 
 const LoginPage = () => {
+
+    const navigate = useNavigation()
+
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     const input = () => {
         console.log('masuk')
     }
+
+    const goback = () => navigate.goBack()
+
+    //@ts-ignore
+    const gotoRegister = () => navigate.navigate(namePage.REGISTER_PAGE)
+
     return (
         <SafeAreaView style={[stylesGlobal.backroundWhite, styles.container]}>
             <StatusBar
@@ -27,7 +38,7 @@ const LoginPage = () => {
                 backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
             <View style={styles.concomponent}>
-                <TouchableOpacity style={styles.titleBack}>
+                <TouchableOpacity style={styles.titleBack} onPress={goback}>
                     <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
                     <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
                         Masuk
@@ -54,7 +65,7 @@ const LoginPage = () => {
                 <ButtonInput action={input} tittle={'Masuk'} />
                 <View style={styles.daftar}>
                     <Text style={[stylesGlobal.header3, { color: '#000' }]}>Belum Punya Akun ? </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={gotoRegister}>
                         <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>DAFTAR</Text>
                     </TouchableOpacity>
                 </View>
