@@ -3,6 +3,8 @@ import {
     View,
     Text,
     TextInput,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native';
 import { ReactSetter } from "../../utils/interface"
 import stylesGlobal from '../../utils/global_style';
@@ -14,17 +16,18 @@ const TextInputData = ({
     title,
 }: Props) => {
     return (
-
-        <View style={styles.marginContainer}>
-            <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>{title}</Text>
-            <View style={stylesGlobal.enter10} />
-            <TextInput
-                style={styles.input}
-                onChangeText={data => setData(data)}
-                value={data}
-                placeholder={placeholder}
-            />
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.marginContainer}>
+                <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>{title}</Text>
+                <View style={stylesGlobal.enter10} />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={data => setData(data)}
+                    value={data}
+                    placeholder={placeholder}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 

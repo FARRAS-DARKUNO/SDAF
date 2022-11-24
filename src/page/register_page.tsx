@@ -6,6 +6,7 @@ import {
     View,
     TouchableOpacity,
     Text,
+    ScrollView,
 } from 'react-native';
 import stylesGlobal from "../utils/global_style";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -13,6 +14,7 @@ import ButtonInput from "../component/button_input/button_input";
 import LogoSFAD from "../component/image/image";
 import TextInputData from "../component/textInput/textInput";
 import { useNavigation } from "@react-navigation/native";
+import { AlertStop } from '../component/alert/alert'
 
 const RegisterPage = () => {
 
@@ -20,14 +22,32 @@ const RegisterPage = () => {
 
     const goBack = () => navigate.goBack()
 
-    const dummie = () => console.log('masuk')
-
     const [name, setName] = useState<string>('')
     const [instansi, setInstansi] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [repassword, setRepassword] = useState<string>('')
 
+    const input = () => {
+        if (name == '' || instansi == '' || password == '' || email == '' || repassword == '') {
+            AlertStop({
+                title: 'Perikasa Data',
+                massage: 'Lengkapi data diri anda',
+            })
+        }
+        else if (password != repassword) {
+            AlertStop({
+                title: 'Perikasa Data',
+                massage: 'Konfirmasi kata sandi salah',
+            })
+        }
+        else if (email.search('@') == -1 || email.search(' ') > -1 || email.length <= 10) {
+            AlertStop({
+                title: 'Perikasa Data',
+                massage: 'Masukan email yang benar',
+            })
+        }
+    }
 
     return (
         <SafeAreaView style={[styles.container, stylesGlobal.backroundWhite]}>
@@ -35,48 +55,51 @@ const RegisterPage = () => {
                 animated={true}
                 backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
-            <TouchableOpacity style={styles.titleBack} onPress={goBack}>
-                <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
-                <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
-                    Daftar
-                </Text>
-            </TouchableOpacity>
-            <View style={styles.imageStyle}>
-                <LogoSFAD size={100} />
-            </View>
-            <View style={stylesGlobal.enter10} />
-            <TextInputData
-                setData={setName}
-                data={name}
-                placeholder={'Nama Lengkap'}
-                title={'Nama Lengkap'}
-            />
-            <TextInputData
-                setData={setInstansi}
-                data={instansi}
-                placeholder={'Instansi'}
-                title={'Instansi'}
-            />
-            <TextInputData
-                setData={setEmail}
-                data={email}
-                placeholder={'Email'}
-                title={'Email'}
-            />
-            <TextInputData
-                setData={setPassword}
-                data={password}
-                placeholder={'Kata Sandi'}
-                title={'Kata Sandi'}
-            />
-            <TextInputData
-                setData={setRepassword}
-                data={repassword}
-                placeholder={'Konfirmasi Kata Sandi'}
-                title={'Konfirmasi Kata Sandi'}
-            />
-            <ButtonInput action={dummie} tittle={'DAFTAR'} />
+            <ScrollView>
 
+
+                <TouchableOpacity style={styles.titleBack} onPress={goBack}>
+                    <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
+                    <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
+                        Daftar
+                    </Text>
+                </TouchableOpacity>
+                <View style={styles.imageStyle}>
+                    <LogoSFAD size={100} />
+                </View>
+                <View style={stylesGlobal.enter10} />
+                <TextInputData
+                    setData={setName}
+                    data={name}
+                    placeholder={'Nama Lengkap'}
+                    title={'Nama Lengkap'}
+                />
+                <TextInputData
+                    setData={setInstansi}
+                    data={instansi}
+                    placeholder={'Instansi'}
+                    title={'Instansi'}
+                />
+                <TextInputData
+                    setData={setEmail}
+                    data={email}
+                    placeholder={'Email'}
+                    title={'Email'}
+                />
+                <TextInputData
+                    setData={setPassword}
+                    data={password}
+                    placeholder={'Kata Sandi'}
+                    title={'Kata Sandi'}
+                />
+                <TextInputData
+                    setData={setRepassword}
+                    data={repassword}
+                    placeholder={'Konfirmasi Kata Sandi'}
+                    title={'Konfirmasi Kata Sandi'}
+                />
+                <ButtonInput action={input} tittle={'DAFTAR'} />
+            </ScrollView>
         </SafeAreaView>
     )
 }

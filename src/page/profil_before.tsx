@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     SafeAreaView,
     StatusBar,
@@ -26,6 +26,7 @@ const ProfilBefore = () => {
     const goBackPage = () => {
         navigate.goBack()
     }
+
 
     return (
         <SafeAreaView style={[styles.container, stylesGlobal.backroundWhite]}>

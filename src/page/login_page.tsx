@@ -6,6 +6,7 @@ import {
     View,
     Text,
     TouchableOpacity,
+    ScrollView,
 } from 'react-native';
 import stylesGlobal from "../utils/global_style";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -14,6 +15,7 @@ import TextInputData from "../component/textInput/textInput";
 import ButtonInput from "../component/button_input/button_input";
 import { useNavigation } from "@react-navigation/native";
 import { namePage } from "../utils/namePage";
+import { AlertStop } from '../component/alert/alert'
 
 const LoginPage = () => {
 
@@ -23,7 +25,12 @@ const LoginPage = () => {
     const [password, setPassword] = useState<string>('');
 
     const input = () => {
-        console.log('masuk')
+        if (email == '' || password == '') {
+            AlertStop({
+                title: 'Perikasa Data',
+                massage: 'Email dan Password anda belum lengkap',
+            })
+        }
     }
 
     const goback = () => navigate.goBack()
@@ -37,7 +44,8 @@ const LoginPage = () => {
                 animated={true}
                 backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
-            <View style={styles.concomponent}>
+            <ScrollView style={styles.concomponent}>
+
                 <TouchableOpacity style={styles.titleBack} onPress={goback}>
                     <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
                     <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
@@ -69,7 +77,7 @@ const LoginPage = () => {
                         <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>DAFTAR</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
