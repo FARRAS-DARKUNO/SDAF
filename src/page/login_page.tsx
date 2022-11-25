@@ -16,13 +16,25 @@ import ButtonInput from "../component/button_input/button_input";
 import { useNavigation } from "@react-navigation/native";
 import { namePage } from "../utils/namePage";
 import { AlertStop } from '../component/alert/alert'
+import { postLogin } from "../utils/axios";
+import Loading from "../component/loading/loading";
+import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
+
+    const dispatch = useDispatch()
 
     const navigate = useNavigation()
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [isLoading, setLoading] = useState<boolean>(false)
+
+    const goback = () => navigate.goBack()
+    //@ts-ignore
+    const gotoRegister = () => navigate.navigate(namePage.REGISTER_PAGE)
+    //@ts-ignore
+    const gotoBeranda = () => navigate.navigate(namePage.BERANDA_PAGE)
 
     const input = () => {
         if (email == '' || password == '') {
@@ -31,54 +43,68 @@ const LoginPage = () => {
                 massage: 'Email dan Password anda belum lengkap',
             })
         }
+        else {
+            setLoading(true)
+            postLogin({
+                email: email,
+                password: password,
+                setData: setLoading,
+                next: gotoBeranda
+            })
+        }
     }
 
-    const goback = () => navigate.goBack()
 
-    //@ts-ignore
-    const gotoRegister = () => navigate.navigate(namePage.REGISTER_PAGE)
+    useEffect(() => {
+
+    }, [isLoading])
 
     return (
-        <SafeAreaView style={[stylesGlobal.backroundWhite, styles.container]}>
-            <StatusBar
-                animated={true}
-                backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
-            />
-            <ScrollView style={styles.concomponent}>
+        <>
+            {
+                isLoading ? <Loading /> :
+                    <SafeAreaView style={[stylesGlobal.backroundWhite, styles.container]}>
+                        <StatusBar
+                            animated={true}
+                            backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
+                        />
+                        <ScrollView style={styles.concomponent}>
 
-                <TouchableOpacity style={styles.titleBack} onPress={goback}>
-                    <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
-                    <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
-                        Masuk
-                    </Text>
-                </TouchableOpacity>
-                <View style={styles.imageStyle}>
-                    <LogoSFAD size={250} />
-                </View>
+                            <TouchableOpacity style={styles.titleBack} onPress={goback}>
+                                <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
+                                <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
+                                    Masuk
+                                </Text>
+                            </TouchableOpacity>
+                            <View style={styles.imageStyle}>
+                                <LogoSFAD size={250} />
+                            </View>
 
-                <TextInputData
-                    setData={setEmail}
-                    data={email}
-                    placeholder={'Maukan Email'}
-                    title={'Email'}
-                />
+                            <TextInputData
+                                setData={setEmail}
+                                data={email}
+                                placeholder={'Maukan Email'}
+                                title={'Email'}
+                            />
 
-                <TextInputData
-                    setData={setPassword}
-                    data={password}
-                    placeholder={'Maukan Password'}
-                    title={'Password'}
-                />
-                <View style={stylesGlobal.enter20} />
-                <ButtonInput action={input} tittle={'Masuk'} />
-                <View style={styles.daftar}>
-                    <Text style={[stylesGlobal.header3, { color: '#000' }]}>Belum Punya Akun ? </Text>
-                    <TouchableOpacity onPress={gotoRegister}>
-                        <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>DAFTAR</Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+                            <TextInputData
+                                setData={setPassword}
+                                data={password}
+                                placeholder={'Maukan Password'}
+                                title={'Password'}
+                            />
+                            <View style={stylesGlobal.enter20} />
+                            <ButtonInput action={input} tittle={'Masuk'} />
+                            <View style={styles.daftar}>
+                                <Text style={[stylesGlobal.header3, { color: '#000' }]}>Belum Punya Akun ? </Text>
+                                <TouchableOpacity onPress={gotoRegister}>
+                                    <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>DAFTAR</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </ScrollView>
+                    </SafeAreaView>
+            }
+        </>
     )
 }
 

@@ -30,7 +30,7 @@ export const AlertStop = ({ title, massage }: JustProps) => {
         title,
         massage,
         [
-            { text: "Lengkapi", onPress: () => null }
+            { text: "Tutup", onPress: () => null }
         ]
     );
 }

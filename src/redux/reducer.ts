@@ -1,8 +1,15 @@
-import { GET_MONTH_VALUE, GET_YEAR_VALUE } from "./action";
+import { 
+    GET_MONTH_VALUE, 
+    GET_USER_NAME, 
+    GET_YEAR_VALUE,
+    GET_ID_USER
+} from "./action";
 
 const initialState = {
     month : 1,
-    year : '2022'
+    year : '2022',
+    userName : 'Pemantau',
+    idUser : ''
 }
 
 function userReducer(state = initialState, action :any) {
@@ -11,6 +18,10 @@ function userReducer(state = initialState, action :any) {
             return { ...state, month : action.data};
         case GET_YEAR_VALUE :
             return { ...state, year : action.data};
+        case GET_USER_NAME:
+            return {...state, userName : action.data};
+        case GET_ID_USER:
+            return {...state, idUser : action.data};
         default :
             return state
     }
