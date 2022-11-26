@@ -18,11 +18,20 @@ import { namePage } from "../utils/namePage";
 import { AlertStop } from '../component/alert/alert'
 import { postLogin } from "../utils/axios";
 import Loading from "../component/loading/loading";
-import { useDispatch } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserName, getIdUser } from "../redux/action"
+import axios from "axios";
+import { getDataUserById } from "../utils/api";
 
 const LoginPage = () => {
 
     const dispatch = useDispatch()
+
+    const { idUser } = useSelector(
+        //@ts-ignore
+        state => state.userReducer
+    )
 
     const navigate = useNavigation()
 
@@ -35,6 +44,30 @@ const LoginPage = () => {
     const gotoRegister = () => navigate.navigate(namePage.REGISTER_PAGE)
     //@ts-ignore
     const gotoBeranda = () => navigate.navigate(namePage.BERANDA_PAGE)
+
+    const checkUser = async () => {
+        await AsyncStorage.getItem('id')
+            .then(async response => {
+                console.log(response)
+
+                if (response != null) {
+
+                    if (idUser == '') {
+                        await axios.get(getDataUserById({ id: response }))
+                            .then(data => {
+                                console.log(data.data.data)
+                                dispatch(getUserName(data.data.data.name))
+                                dispatch(getIdUser(data.data.data.id))
+                                setLoading(false)
+                            }).finally(() => gotoBeranda())
+                    }
+                }
+                else {
+                    setLoading(false)
+                }
+
+            })
+    }
 
     const input = () => {
         if (email == '' || password == '') {
@@ -49,7 +82,7 @@ const LoginPage = () => {
                 email: email,
                 password: password,
                 setData: setLoading,
-                next: gotoBeranda
+                next: checkUser
             })
         }
     }

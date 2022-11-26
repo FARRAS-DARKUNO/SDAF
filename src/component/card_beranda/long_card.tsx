@@ -10,15 +10,28 @@ import styles from "./styles";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
 import { namePage } from "../../utils/namePage";
+import { useSelector } from "react-redux";
 
 const LongCard = (props: DataContain) => {
 
+    const { idUser } = useSelector(
+        //@ts-ignore
+        state => state.userReducer
+    )
+
     const navigate = useNavigation()
+
+    const checkerNavigate = () => {
+        if (idUser != '') {
+            //@ts-ignore
+            navigate.navigate(namePage.DETAIL_PAGE, { name: props.link, page: props.name })
+        }
+    }
 
     return (
         <TouchableWithoutFeedback
-            //@ts-ignore
-            onPress={() => navigate.navigate(namePage.DETAIL_PAGE, { name: props.link, page: props.name })}
+
+            onPress={() => checkerNavigate()}
         >
             <View style={[styles.containerLong, stylesGlobal.backroundSekunder]}>
 

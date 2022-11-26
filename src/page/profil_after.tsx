@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     SafeAreaView,
     StatusBar,
@@ -12,36 +12,101 @@ import LogoSFAD from "../component/image/image";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import SelfData from "../component/self_data/self_data";
 import ButtonInput from '../component/button_input/button_input'
+import { userData } from "../utils/axios";
+import { getUserName, getIdUser } from "../redux/action"
+import { useSelector, useDispatch } from "react-redux";
+import Loading from "../component/loading/loading";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { namePage } from "../utils/namePage";
+import { AlertShow } from "../component/alert/alert";
 
 const ProfilAfter = () => {
 
     const dummie = () => console.log('masuk')
 
-    return (
-        <SafeAreaView style={[styles.container, stylesGlobal.backroundWhite]}>
-            <StatusBar
-                animated={true}
-                backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
-            />
-            <TouchableOpacity style={styles.titleBack}>
-                <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
-                <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
-                    Profil
-                </Text>
-            </TouchableOpacity>
-            <View style={styles.imageStyle}>
-                <LogoSFAD size={200} />
-            </View>
-            <SelfData data={'suprapmant'} title={'Name Lengkap'} />
-            <SelfData data={'Institut Teknologi Sumatera'} title={'Instansi'} />
-            <SelfData data={'suprapmant.11915517@itera.ac.id'} title={'Email'} />
-            <View style={stylesGlobal.enter20} />
-            <ButtonInput
-                action={dummie}
-                tittle={'Keluar'}
-            />
+    const dispatch = useDispatch()
 
-        </SafeAreaView>
+    const navigate = useNavigation()
+
+    const [name, setNames] = useState<string>('')
+    const [instansi, setInstansis] = useState<string>('')
+    const [email, setEmails] = useState<string>('')
+    const [isLoading, setLoadings] = useState<boolean>(true)
+
+
+    const { idUser } = useSelector(
+        //@ts-ignore
+        state => state.userReducer
+    )
+
+    const goBack = () => navigate.goBack()
+
+    //@ts-ignore
+    const goNavigation = () => navigate.navigate(namePage.BERANDA_PAGE)
+
+    const logout = async () => {
+        setLoadings(true)
+        await AsyncStorage.clear()
+            .then(() => {
+                dispatch(getIdUser(''))
+                dispatch(getUserName('Pemantau'))
+            }).finally(() => {
+                setLoadings(false)
+                goNavigation()
+            })
+
+    }
+
+    const alertShow = () => {
+        AlertShow({
+            title: "Keluar Akun",
+            massage: 'Apakah anda yakin ingin keluar akun ?',
+            action: logout
+        })
+    }
+
+
+    useEffect(() => {
+        userData({
+            data: idUser,
+            setEmail: setEmails,
+            setInstansi: setInstansis,
+            setLoading: setLoadings,
+            setName: setNames
+        })
+    }, [isLoading])
+
+    return (
+        <>
+            {
+                isLoading ? <Loading /> :
+                    <SafeAreaView style={[styles.container, stylesGlobal.backroundWhite]}>
+                        <StatusBar
+                            animated={true}
+                            backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
+                        />
+                        <TouchableOpacity style={styles.titleBack} onPress={goBack}>
+                            <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
+                            <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
+                                Profil
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={styles.imageStyle}>
+                            <LogoSFAD size={200} />
+                        </View>
+                        <SelfData data={name} title={'Name Lengkap'} />
+                        <SelfData data={instansi} title={'Instansi'} />
+                        <SelfData data={email} title={'Email'} />
+                        <View style={stylesGlobal.enter20} />
+                        <ButtonInput
+                            action={alertShow}
+                            tittle={'Keluar'}
+                        />
+
+                    </SafeAreaView>
+            }
+        </>
     )
 }
 

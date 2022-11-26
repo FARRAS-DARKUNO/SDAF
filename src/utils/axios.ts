@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ReactSetter } from "./interface";
-import {registerApi, loginApi} from '../utils/api'
+import {registerApi, loginApi, getDataUserById} from '../utils/api'
 import { AlertStop, AlertNext } from "../component/alert/alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import {getUserName, getIdUser} from '../redux/action'
@@ -87,6 +87,29 @@ export const postLogin = async ({email, password, setData, next} : Login) => {
             })
     })
 }
+
+export const userData = async ({data,setEmail,setInstansi,setLoading,setName}: User) => {
+    const linkData = getDataUserById({id : data})
+    await axios.get(linkData)
+    .then(response => {
+        console.log(response.data.data)
+        setEmail(response.data.data.email)
+        setInstansi(response.data.data.instansi)
+        setName(response.data.data.name)
+        setLoading(false)
+    })
+
+
+}
+
+interface User{
+    data : string
+    setName: ReactSetter<string>,
+    setInstansi: ReactSetter<string>,
+    setEmail: ReactSetter<string>,
+    setLoading: ReactSetter<boolean>,
+} 
+
 
 interface Props {
     data : string,

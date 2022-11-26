@@ -14,12 +14,27 @@ import Beranda from "../component/beranda";
 import { isInternetConnect } from "../utils/check_internet";
 import LostConection from "../component/lost_conection/lost_conection";
 import Loading from "../component/loading/loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserName, getIdUser } from "../redux/action"
+import axios from "axios";
+import { getDataUserById } from "../utils/api";
 
 
 const BerandaPage = () => {
+
+  const dispatch = useDispatch()
+
+  const { idUser } = useSelector(
+    //@ts-ignore
+    state => state.userReducer
+  )
+
   const [isConnection, setConnection] = useState<number>(0)
 
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const [isLoading, setLoading] = useState<boolean>(true)
 
   const wait = (timeout: number) => {
     return new Promise((resolve: any) => {
@@ -34,6 +49,30 @@ const BerandaPage = () => {
       isInternetConnect({ setData: setConnection })
     });
   }, []);
+
+  const checkUser = async () => {
+    await AsyncStorage.getItem('id')
+      .then(async response => {
+        console.log(response)
+
+        if (response != null) {
+
+          if (idUser == '') {
+            await axios.get(getDataUserById({ id: response }))
+              .then(data => {
+                console.log(data.data.data)
+                dispatch(getUserName(data.data.data.name))
+                dispatch(getIdUser(data.data.data.id))
+                setLoading(false)
+              })
+          }
+        }
+        else {
+          setLoading(false)
+        }
+
+      })
+  }
 
   const isExit = () => {
     Alert.alert("Menutup Aplikasi", "Anda yakin ingin menutup aplikasi ?", [
@@ -52,7 +91,10 @@ const BerandaPage = () => {
 
 
   useEffect(() => {
+    checkUser()
+
     isInternetConnect({ setData: setConnection })
+
 
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
@@ -63,13 +105,13 @@ const BerandaPage = () => {
       backHandler.remove()
     }
 
-  }, [isConnection])
+  }, [isConnection, isLoading])
 
   return (
     <>
 
       {
-        isConnection == 0 ? <Loading /> :
+        isConnection == 0 || isLoading == true ? <Loading /> :
           <SafeAreaView style={[styles.container, stylesGlobal.backroundPremier]}>
             <ScrollView
               style={{ width: '100%', height: '100%' }}
