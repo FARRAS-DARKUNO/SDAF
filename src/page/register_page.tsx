@@ -100,30 +100,35 @@ const RegisterPage = () => {
                                 data={name}
                                 placeholder={'Nama Lengkap'}
                                 title={'Nama Lengkap'}
+                                isPasword={false}
                             />
                             <TextInputData
                                 setData={setInstansi}
                                 data={instansi}
                                 placeholder={'Instansi'}
                                 title={'Instansi'}
+                                isPasword={false}
                             />
                             <TextInputData
                                 setData={setEmail}
                                 data={email}
                                 placeholder={'Email'}
                                 title={'Email'}
+                                isPasword={false}
                             />
                             <TextInputData
                                 setData={setPassword}
                                 data={password}
                                 placeholder={'Kata Sandi'}
                                 title={'Kata Sandi'}
+                                isPasword={true}
                             />
                             <TextInputData
                                 setData={setRepassword}
                                 data={repassword}
                                 placeholder={'Konfirmasi Kata Sandi'}
                                 title={'Konfirmasi Kata Sandi'}
+                                isPasword={true}
                             />
                             <ButtonInput action={input} tittle={'DAFTAR'} />
                         </ScrollView>

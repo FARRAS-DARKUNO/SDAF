@@ -66,6 +66,9 @@ const BerandaPage = () => {
                 setLoading(false)
               })
           }
+          else {
+            setLoading(false)
+          }
         }
         else {
           setLoading(false)

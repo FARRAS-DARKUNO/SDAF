@@ -118,6 +118,7 @@ const LoginPage = () => {
                                 data={email}
                                 placeholder={'Maukan Email'}
                                 title={'Email'}
+                                isPasword={false}
                             />
 
                             <TextInputData
@@ -125,6 +126,7 @@ const LoginPage = () => {
                                 data={password}
                                 placeholder={'Maukan Password'}
                                 title={'Password'}
+                                isPasword={true}
                             />
                             <View style={stylesGlobal.enter20} />
                             <ButtonInput action={input} tittle={'Masuk'} />

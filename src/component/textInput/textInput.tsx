@@ -14,6 +14,7 @@ const TextInputData = ({
     data,
     placeholder,
     title,
+    isPasword
 }: Props) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -25,6 +26,7 @@ const TextInputData = ({
                     onChangeText={data => setData(data)}
                     value={data}
                     placeholder={placeholder}
+                    secureTextEntry={isPasword}
                 />
             </View>
         </TouchableWithoutFeedback>
@@ -36,6 +38,7 @@ type Props = {
     data: string,
     placeholder: string,
     title: string
+    isPasword: boolean
 }
 
 const styles = StyleSheet.create({
