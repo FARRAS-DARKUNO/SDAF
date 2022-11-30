@@ -11,6 +11,7 @@ import ProfilPage from './src/page/profil_page';
 import ProfilAfter from './src/page/profil_after';
 import ProfilBefore from './src/page/profil_before';
 import RegisterPage from './src/page/register_page';
+import Information from './src/page/information';
 //redux
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
@@ -24,6 +25,7 @@ type RootStackParamList = {
   ProfilAfter: undefined,
   ProfilBefore: undefined,
   RegisterPage: undefined,
+  Information: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -43,6 +45,7 @@ const App = () => {
           <Stack.Screen name="ProfilAfter" component={ProfilAfter} />
           <Stack.Screen name="ProfilBefore" component={ProfilBefore} />
           <Stack.Screen name="RegisterPage" component={RegisterPage} />
+          <Stack.Screen name="Information" component={Information} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

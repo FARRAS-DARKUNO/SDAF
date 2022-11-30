@@ -20,10 +20,9 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { namePage } from "../utils/namePage";
 import { AlertShow } from "../component/alert/alert";
+import Ionicon from "react-native-vector-icons/Ionicons";
 
 const ProfilAfter = () => {
-
-    const dummie = () => console.log('masuk')
 
     const dispatch = useDispatch()
 
@@ -44,6 +43,8 @@ const ProfilAfter = () => {
 
     //@ts-ignore
     const goNavigation = () => navigate.navigate(namePage.BERANDA_PAGE)
+    //@ts-ignore
+    const goInformation = () => navigate.navigate(namePage.INFORMATION)
 
     const logout = async () => {
         setLoadings(true)
@@ -86,12 +87,17 @@ const ProfilAfter = () => {
                             animated={true}
                             backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
                         />
-                        <TouchableOpacity style={styles.titleBack} onPress={goBack}>
-                            <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
-                            <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
-                                Profil
-                            </Text>
-                        </TouchableOpacity>
+                        <View style={styles.viewHeader}>
+                            <TouchableOpacity style={styles.titleBack} onPress={goBack}>
+                                <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
+                                <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
+                                    Profil
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.titleBack} onPress={goInformation}>
+                                <Ionicon name="information-circle-outline" size={24} color="#2F5664" />
+                            </TouchableOpacity>
+                        </View>
                         <View style={styles.imageStyle}>
                             <LogoSFAD size={200} />
                         </View>
@@ -121,6 +127,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 30,
         marginBottom: 20,
+    },
+    viewHeader: {
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     titleBack: {
         flexDirection: "row",

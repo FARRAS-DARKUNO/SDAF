@@ -6,5 +6,6 @@ export const namePage = {
     PROFIL_PAGE: 'ProfilPage',
     PROFIL_AFTER : 'ProfilAfter',
     PROFIL_BEFORE : 'ProfilBefore',
-    REGISTER_PAGE : 'RegisterPage'
+    REGISTER_PAGE : 'RegisterPage',
+    INFORMATION : "Information"
 }
