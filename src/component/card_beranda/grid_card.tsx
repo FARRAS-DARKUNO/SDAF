@@ -24,6 +24,10 @@ const GridCard = (props: DataContain) => {
             //@ts-ignore
             navigate.navigate(namePage.DETAIL_PAGE, { name: props.link, page: props.name })
         }
+        if (idUser != '' && props.link == 'arah-angins') {
+            //@ts-ignore
+            navigate.navigate(namePage.ARAH_ANGIN, { name: props.link, page: props.name })
+        }
     }
 
     return (
