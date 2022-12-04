@@ -1,5 +1,5 @@
 
-const api = 'https://sfad-kiluan.herokuapp.com/'
+const api = 'https://sfad.fly.dev/'
 
 //https://sfad-kiluan.herokuapp.com/kuat-aruss/grafik?year=2022&month=1
 //https://sfad-kiluan.herokuapp.com/kuat-aruss/average?year=2022&month=1
