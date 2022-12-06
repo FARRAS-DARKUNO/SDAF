@@ -41,7 +41,7 @@ const SplashScreen = () => {
                             }).finally(() => toNavigate())
                     }
                 })
-        }, 1000)
+        }, 3000)
     }, [])
 
     return (
@@ -53,7 +53,7 @@ const SplashScreen = () => {
             <View />
             <LogoSFAD size={200} />
             <View style={styles.view}>
-                <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}> SuportBy : </Text>
+                <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}> Supported by : </Text>
                 <View style={stylesGlobal.enter10} />
                 <Image source={require('../assets/suportby.png')} style={{ height: 39, width: 150 }} />
             </View>

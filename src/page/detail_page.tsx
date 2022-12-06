@@ -104,6 +104,9 @@ const DetailPage = () => {
                             year={countries}
                             date={bulan}
                         />
+                        <Text style={[styles.text, stylesGlobal.subtitle, stylesGlobal.colorPremier]}>
+                            *Berdasarkan Data Lapangan
+                        </Text>
                         <Detail.GrafikDetail
                             label={labelGrafik}
                             data={dataGrafik}
@@ -135,6 +138,10 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         paddingHorizontal: 20,
     },
+    text: {
+        paddingHorizontal: 20,
+        marginBottom: 10
+    }
 })
 
 export default DetailPage

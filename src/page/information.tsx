@@ -11,7 +11,7 @@ import stylesGlobal from "../utils/global_style"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import CardInformation from "../component/card_information/card_information";
-import { timData } from "../utils/data_tim";
+import { timData, pengenalan } from "../utils/data_tim";
 
 const Information = () => {
 
@@ -33,6 +33,11 @@ const Information = () => {
             </TouchableOpacity>
             <View style={stylesGlobal.enter30} />
             <ScrollView>
+                <View style={styles.margin}>
+                    <Text style={[stylesGlobal.colorPremier, stylesGlobal.header1, styles.text]}>Pengenalan</Text>
+                    <View style={[styles.line, stylesGlobal.backroundPremier]} />
+                    <Text style={[styles.pengenalan, stylesGlobal.colorPremier, stylesGlobal.subtitle]}>{pengenalan}</Text>
+                </View>
                 {
                     timData.map((statemant) => (
                         <View style={styles.margin}>
@@ -83,6 +88,12 @@ const styles = StyleSheet.create({
     },
     margin: {
         marginBottom: 20
+    },
+    pengenalan: {
+        paddingHorizontal: 20,
+        marginTop: 10,
+        textAlign: "justify",
+        // color: "black"
     }
 })
 
