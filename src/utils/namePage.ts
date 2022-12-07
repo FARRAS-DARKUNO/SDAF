@@ -8,5 +8,6 @@ export const namePage = {
     PROFIL_BEFORE : 'ProfilBefore',
     REGISTER_PAGE : 'RegisterPage',
     INFORMATION : "Information",
-    ARAH_ANGIN : "ArahAngin"
+    ARAH_ANGIN : "ArahAngin",
+    RAMALAN_CUACA :"RamalanCuaca"
 }

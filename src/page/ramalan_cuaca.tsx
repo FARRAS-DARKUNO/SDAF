@@ -13,15 +13,20 @@ import { COLOR_GRADIEN2 } from "../utils/global_style";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Cuaca from "../component/ramalan_cuaca";
 import { indicator } from "../utils/indicator";
+import { useNavigation } from "@react-navigation/native";
 
 const RamalanCuaca = () => {
+
+    const navigate = useNavigation()
+
+    const goBack = () => navigate.goBack()
     return (
         <LinearGradient colors={COLOR_GRADIEN2} style={styles.container}>
             <StatusBar
                 animated={true}
                 backgroundColor={stylesGlobal.backroundWhite.backgroundColor}
             />
-            <TouchableOpacity style={styles.titleBack} onPress={() => console.log("mantaps")}>
+            <TouchableOpacity style={styles.titleBack} onPress={goBack}>
                 <MaterialIcons name="arrow-back-ios" size={20} color="#2F5664" />
                 <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>
                     Perkiraan Cuaca

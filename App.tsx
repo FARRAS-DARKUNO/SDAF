@@ -41,7 +41,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="SplashScreen" component={SplashScreen} />
+          <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="BerandaPage" component={BerandaPage} />
           <Stack.Screen name="DetailPage" component={DetailPage} />
           <Stack.Screen name="LoginPage" component={LoginPage} />
@@ -50,7 +50,7 @@ const App = () => {
           <Stack.Screen name="ProfilBefore" component={ProfilBefore} />
           <Stack.Screen name="RegisterPage" component={RegisterPage} />
           <Stack.Screen name="Information" component={Information} />
-          <Stack.Screen name="ArahAngin" component={ArahAngin} /> */}
+          <Stack.Screen name="ArahAngin" component={ArahAngin} />
           <Stack.Screen name="RamalanCuaca" component={RamalanCuaca} />
         </Stack.Navigator>
       </NavigationContainer>

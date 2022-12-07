@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react"
 import {
     View,
     Text,
@@ -6,29 +7,61 @@ import {
     ScrollView,
 } from "react-native"
 import stylesGlobal from "../../utils/global_style"
+import dataPerkiraanCuaca from "../../utils/perkiraan_cuaca"
+import Loading from "../loading/loading"
 
 const Body = () => {
+
+    const [dataCuaca, setDataCuaca] = useState<any>(null)
+
+    const [isLoading, setIsloading] = useState<any>(null)
+
+    useEffect(() => {
+        dataPerkiraanCuaca({
+            setData: setDataCuaca,
+            isLoading: setIsloading
+        })
+        console.log("Hallo", dataCuaca)
+    }, [])
+
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                <View style={{ marginBottom: 20 }}>
-                    <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>Perkiraan Cuaca Hari ini</Text>
-                    <View style={stylesGlobal.enter20} />
-                    <View style={styles.card}>
-                        <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>Pagi</Text>
-                        <View style={styles.boxInCard}>
-                            <View style={styles.box50}>
-                                <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>Hujan Badai</Text>
-                            </View>
-                            <View style={styles.box50}>
-                                <Image source={require('../../assets/petir.png')} style={styles.img} />
-                                <Text style={[stylesGlobal.header1, stylesGlobal.colorPremier]}>{"30" + '°' + "C"}</Text>
-                            </View>
-                        </View>
+        <>
+            {
+                dataCuaca == null ? <Loading /> :
+                    <View style={styles.container}>
+                        <ScrollView>
+                            {
+                                //@ts-ignore
+                                dataCuaca.map((data) => (
+                                    <View style={{ marginBottom: 20 }}>
+                                        <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>{data.tiitle}</Text>
+                                        <View style={stylesGlobal.enter20} />
+                                        {
+                                            //@ts-ignore
+                                            data.data.map((response) => (
+                                                <View style={styles.card}>
+                                                    <Text style={[stylesGlobal.colorPremier, stylesGlobal.header3]}>{response.waktu}</Text>
+                                                    <View style={styles.boxInCard}>
+                                                        <View style={styles.box50}>
+                                                            <Text style={[stylesGlobal.header2, stylesGlobal.colorPremier]}>{response.status}</Text>
+                                                        </View>
+                                                        <View style={styles.box50}>
+                                                            <Image source={{
+                                                                uri: response.gambar,
+                                                            }} style={styles.img} />
+                                                            <Text style={[stylesGlobal.header1, stylesGlobal.colorPremier]}>{response.suhu}</Text>
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            ))
+                                        }
+                                    </View>
+                                ))
+                            }
+                        </ScrollView>
                     </View>
-                </View>
-            </ScrollView>
-        </View>
+            }
+        </>
     )
 }
 
