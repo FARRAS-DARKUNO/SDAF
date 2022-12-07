@@ -38,6 +38,8 @@ export const getDataUserById = ({id} : Id) => {
     return api + 'user/' + id
 }
 
+export const cuacaApi = () => "https://cuaca-gempa-rest-api.vercel.app/weather/lampung/pringsewu"
+
 interface Props  {
     name : String,
     month : number,

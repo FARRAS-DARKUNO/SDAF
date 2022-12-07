@@ -49,4 +49,6 @@ const stylesGlobal = StyleSheet.create({
 
 export const COLOR_GRADIEN: string[] = ['#2F5664', '#6399B0']
 
+export const COLOR_GRADIEN2: string[] = ['#FFF', '#6399B0']
+
 export default stylesGlobal;

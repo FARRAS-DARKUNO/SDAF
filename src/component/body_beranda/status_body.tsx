@@ -6,10 +6,12 @@ import {
 import stylesGlobal from "../../utils/global_style";
 import database from '@react-native-firebase/database';
 import { indicator } from "../../utils/indicator";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const StatusBody = () => {
     const [kecepatanAngin, setKecepatanAngin] = useState<number>(0)
     const [tinggiGelombang, setTinggiGelombang] = useState<number>(0)
+
 
     database()
         .ref('/')
