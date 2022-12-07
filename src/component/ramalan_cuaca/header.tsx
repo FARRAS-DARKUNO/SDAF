@@ -57,12 +57,10 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 30
     },
     boxContain: {
         width: "75%",
         height: "100%",
-        // backgroundColor: 'red',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: "row",
