@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import Geolocation from 'react-native-geolocation-service';
 import CompassHeading from 'react-native-compass-heading';
 import { useRoute } from "@react-navigation/native";
-import { compass } from "../utils/compass";
+import { compass, convertCompass } from "../utils/compass";
 import database from '@react-native-firebase/database';
 
 const ArahAngin = () => {
@@ -28,6 +28,8 @@ const ArahAngin = () => {
     const [value, setValue] = useState<number>(0)
 
     const [arahAngin, setArahAngin] = useState<string>('')
+
+    const [derajat, setDerajat] = useState<string>('')
 
     //@ts-ignore
     const page = useRoute().params.page
@@ -56,6 +58,7 @@ const ArahAngin = () => {
         .on('value', snapshot => {
             setValue(compass({ data: snapshot.val().angin.arah }))
             setArahAngin(snapshot.val().angin.arah)
+            setDerajat(convertCompass({ data: snapshot.val().angin.arah }))
         });
 
 
@@ -92,7 +95,9 @@ const ArahAngin = () => {
                     </Text>
                 </TouchableOpacity>
                 <View style={styles.compass}>
-                    <View />
+                    <Text style={[stylesGlobal.header1, stylesGlobal.colorPremier]}>
+                        {derajat + ' °'}
+                    </Text>
                     <Image source={require('../assets/compass.png')} style={[
                         styles.image,
                         { transform: [{ rotate: `${(360 - compassHeader) - value}deg` }] },
@@ -129,7 +134,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 100
+        padding: 90
     },
     image: {
         height: 270,
