@@ -46,6 +46,9 @@ const Header = () => {
                     </View>
                 </View>
             </View>
+            <Text style={[stylesGlobal.subtitle, stylesGlobal.colorPremier]}>
+                * Berdasarkan data BMKG
+            </Text>
         </View>
     )
 }
