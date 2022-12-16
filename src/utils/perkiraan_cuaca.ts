@@ -1,6 +1,7 @@
 import axios from "axios"
 import { cuacaApi } from "./api"
 import { ReactSetter } from "./interface"
+import { convertCuacaImage } from "./convert_image"
 
 const dataPerkiraanCuaca = ({setData, isLoading}:Props) => {
     axios.get(cuacaApi())
@@ -13,19 +14,19 @@ const dataPerkiraanCuaca = ({setData, isLoading}:Props) => {
                     {
                         waktu : 'Pagi',
                         status : response.data.data.params[6].times[1].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[1].code }),
                         suhu : response.data.data.params[5].times[1].celcius
                     },
                     {
                         waktu : "Siang",
                         status : response.data.data.params[6].times[2].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[2].code }),
                         suhu : response.data.data.params[5].times[2].celcius
                     },
                     {
                         waktu : "Malam",
                         status : response.data.data.params[6].times[3].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[3].code }),
                         suhu : response.data.data.params[5].times[3].celcius
                     }
                 ]
@@ -36,19 +37,19 @@ const dataPerkiraanCuaca = ({setData, isLoading}:Props) => {
                     {
                         waktu : "Pagi",
                         status : response.data.data.params[6].times[5].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[5].code }),
                         suhu : response.data.data.params[5].times[5].celcius
                     },
                     {
                         waktu : "Siang",
                         status : response.data.data.params[6].times[6].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[7].code }),
                         suhu : response.data.data.params[5].times[6].celcius
                     },
                     {
                         waktu : "Malam",
                         status : response.data.data.params[6].times[7].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[7].code }),
                         suhu : response.data.data.params[5].times[7].celcius
                     }
                 ]
@@ -59,19 +60,19 @@ const dataPerkiraanCuaca = ({setData, isLoading}:Props) => {
                     {
                         waktu : "Pagi",
                         status : response.data.data.params[6].times[9].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[9].code }),
                         suhu : response.data.data.params[5].times[9].celcius
                     },
                     {
                         waktu : "Siang",
                         status : response.data.data.params[6].times[10].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[10].code }),
                         suhu : response.data.data.params[5].times[10].celcius
                     },
                     {
                         waktu : "Malam",
                         status : response.data.data.params[6].times[11].name,
-                        gambar : "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/cloudy_weather_icon_151782_1_lmpnal.png",
+                        gambar : convertCuacaImage({data :response.data.data.params[6].times[11].code }),
                         suhu : response.data.data.params[5].times[11].celcius
                     }
                 ]

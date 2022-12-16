@@ -35,7 +35,7 @@ const Header = () => {
                     </Text>
                 </View>
 
-                <View style={[{ height: "55%", width: 2 }, stylesGlobal.backroundSekunder]} />
+                <View style={[{ height: "55%", width: 2, marginHorizontal: 3 }, stylesGlobal.backroundSekunder]} />
 
                 <View style={styles.box50}>
                     <View style={styles.suhuCuaca}>
