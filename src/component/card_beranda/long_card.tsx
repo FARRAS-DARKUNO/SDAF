@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     TouchableWithoutFeedback,
@@ -13,6 +13,7 @@ import { namePage } from "../../utils/namePage";
 import { useSelector } from "react-redux";
 
 const LongCard = (props: DataContain) => {
+    const [value, setValue] = useState<any>(props.value)
 
     const { idUser } = useSelector(
         //@ts-ignore
@@ -27,6 +28,18 @@ const LongCard = (props: DataContain) => {
             navigate.navigate(namePage.DETAIL_PAGE, { name: props.link, page: props.name })
         }
     }
+
+    const convertToFix = () => {
+        if (typeof (props.value) == "number") {
+            setValue(props.value.toFixed(2))
+        }
+        else {
+            setValue(props.value)
+        }
+    }
+    useEffect(() => {
+        convertToFix()
+    })
 
     return (
         <TouchableWithoutFeedback

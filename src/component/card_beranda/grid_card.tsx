@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
@@ -12,6 +12,9 @@ import { namePage } from "../../utils/namePage";
 import { useSelector } from "react-redux";
 
 const GridCard = (props: DataContain) => {
+
+    const [value, setValue] = useState<any>(props.value)
+
     const { idUser } = useSelector(
         //@ts-ignore
         state => state.userReducer
@@ -30,6 +33,18 @@ const GridCard = (props: DataContain) => {
         }
     }
 
+    const convertToFix = () => {
+        if (typeof (props.value) == "number") {
+            setValue(props.value.toFixed(2))
+        }
+        else {
+            setValue(props.value)
+        }
+    }
+    useEffect(() => {
+        convertToFix()
+    })
+
     return (
 
         <TouchableWithoutFeedback
@@ -39,7 +54,7 @@ const GridCard = (props: DataContain) => {
             <View style={[styles.containerGrid, stylesGlobal.backroundSekunder]}>
                 <Text style={[stylesGlobal.colorWhite, stylesGlobal.header3]}>{props.name}</Text>
                 <Text style={[stylesGlobal.colorWhite, stylesGlobal.header2]}>
-                    {props.value + ' ' + props.type}
+                    {value + ' ' + props.type}
                 </Text>
             </View>
         </TouchableWithoutFeedback>
