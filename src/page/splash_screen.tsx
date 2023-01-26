@@ -15,6 +15,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getUserName, getIdUser } from "../redux/action"
 import { getDataUserById } from "../utils/api";
+import database from '@react-native-firebase/database';
 
 const SplashScreen = () => {
 
@@ -30,7 +31,20 @@ const SplashScreen = () => {
             AsyncStorage.getItem('id')
                 .then(async response => {
                     if (response == null) {
-                        toNavigate()
+                        database()
+                            .ref('/')
+                            .on('value', snapshot => {
+                                let temp = snapshot.val().ready
+                                if (temp == false) {
+                                    //MUST DELETE
+                                    dispatch(getUserName("Nelayan"))
+                                    dispatch(getIdUser("63b787d5d527b4a3ee8746a5"))
+                                    toNavigate()
+                                }
+                                else {
+                                    toNavigate()
+                                }
+                            })
                     }
                     else {
                         await axios.get(getDataUserById({ id: response }))

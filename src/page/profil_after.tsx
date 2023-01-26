@@ -21,6 +21,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { namePage } from "../utils/namePage";
 import { AlertShow } from "../component/alert/alert";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import database from '@react-native-firebase/database';
 
 const ProfilAfter = () => {
 
@@ -32,6 +33,13 @@ const ProfilAfter = () => {
     const [instansi, setInstansis] = useState<string>('')
     const [email, setEmails] = useState<string>('')
     const [isLoading, setLoadings] = useState<boolean>(true)
+    const [isReady, setReady] = useState<boolean>(false)
+
+    database()
+        .ref('/')
+        .on('value', snapshot => {
+            setReady(snapshot.val().ready)
+        })
 
 
     const { idUser } = useSelector(
@@ -101,14 +109,19 @@ const ProfilAfter = () => {
                         <View style={styles.imageStyle}>
                             <LogoSFAD size={200} />
                         </View>
-                        <SelfData data={name} title={'Name Lengkap'} />
-                        <SelfData data={instansi} title={'Instansi'} />
-                        <SelfData data={email} title={'Email'} />
-                        <View style={stylesGlobal.enter20} />
-                        <ButtonInput
-                            action={alertShow}
-                            tittle={'Keluar'}
-                        />
+                        {
+                            isReady == false ? null :
+                                <>
+                                    <SelfData data={name} title={'Name Lengkap'} />
+                                    <SelfData data={instansi} title={'Instansi'} />
+                                    <SelfData data={email} title={'Email'} />
+                                    <View style={stylesGlobal.enter20} />
+                                    <ButtonInput
+                                        action={alertShow}
+                                        tittle={'Keluar'}
+                                    />
+                                </>
+                        }
 
                     </SafeAreaView>
             }
