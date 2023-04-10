@@ -9,30 +9,22 @@ import { indicator } from "../../utils/indicator";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const StatusBody = () => {
-    const [kecepatanAngin, setKecepatanAngin] = useState<number>(0)
-    const [tinggiGelombang, setTinggiGelombang] = useState<number>(0)
+    const [circumstances, setcircumstances] = useState<string>('')
 
 
     database()
         .ref('/')
         .on('value', snapshot => {
-            setKecepatanAngin(snapshot.val().angin.kecepatan_mps)
-            setTinggiGelombang(snapshot.val().laut.ketinggian_m)
+            setcircumstances(snapshot.val().laut.keamanan_lvl)
         });
 
     return (
 
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Text style={[stylesGlobal.colorWhite, stylesGlobal.header1]}>
-                {indicator({
-                    angin: kecepatanAngin,
-                    gelombang: tinggiGelombang
-                })}
+                {circumstances}
             </Text>
             <View style={stylesGlobal.enter10} />
-            <Text style={[stylesGlobal.colorWhite, stylesGlobal.subtitle]}>
-                *Berdasarkan Data Beaufort
-            </Text>
         </View>
 
     )

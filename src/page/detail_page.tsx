@@ -41,7 +41,7 @@ const DetailPage = () => {
     //@ts-ignore
     const page = useRoute().params.page
 
-    const countries = [2022, 2023, 2024, 2025, 2026]
+    const countries = [2023, 2024, 2025, 2026, 2027]
     const bulan = ['Januari', 'Februari', 'Maret', "April", "Mei", 'Juni', "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
 
     const data = {

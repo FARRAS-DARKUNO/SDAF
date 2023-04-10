@@ -25,11 +25,13 @@ const ArahAngin = () => {
 
     const [compassHeader, setCompassHeader] = useState<number>(0)
 
-    const [value, setValue] = useState<number>(0)
+    // const [value, setValue] = useState<number>(0)
 
     const [arahAngin, setArahAngin] = useState<string>('')
 
-    const [derajat, setDerajat] = useState<string>('')
+    // const [derajat, setDerajat] = useState<string>('')
+    const [derajat, setDerajat] = useState<number>(0)
+
 
     //@ts-ignore
     const page = useRoute().params.page
@@ -56,14 +58,13 @@ const ArahAngin = () => {
     database()
         .ref('/')
         .on('value', snapshot => {
-            setValue(compass({ data: snapshot.val().angin.arah }))
+            // setValue(compass({ data: snapshot.val().angin.arah }))
             setArahAngin(snapshot.val().angin.arah)
-            setDerajat(convertCompass({ data: snapshot.val().angin.arah }))
+            setDerajat(snapshot.val().angin.derajat)
         });
 
 
     useEffect(() => {
-        // console.log(compass({ data: 'Selatan' }))
         requestPermissions().then(() => {
             const degree_update_rate = 3;
 
@@ -100,7 +101,7 @@ const ArahAngin = () => {
                     </Text>
                     <Image source={require('../assets/compass.png')} style={[
                         styles.image,
-                        { transform: [{ rotate: `${(360 - compassHeader) - value}deg` }] },
+                        { transform: [{ rotate: `${(compassHeader) - (360 - derajat)}deg` }] },
                     ]} />
                     <Text style={[stylesGlobal.colorPremier, stylesGlobal.header1]}>
                         {arahAngin}

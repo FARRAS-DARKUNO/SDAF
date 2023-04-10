@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     month : 1,
-    year : '2022',
+    year : '2023',
     userName : 'Pemantau',
     idUser : ''
 }
