@@ -101,7 +101,7 @@ const ArahAngin = () => {
                     </Text>
                     <Image source={require('../assets/compass.png')} style={[
                         styles.image,
-                        { transform: [{ rotate: `${(compassHeader) - (360 - derajat)}deg` }] },
+                        { transform: [{ rotate: `${(-compassHeader) - (360 - derajat)}deg` }] },
                     ]} />
                     <Text style={[stylesGlobal.colorPremier, stylesGlobal.header1]}>
                         {arahAngin}
